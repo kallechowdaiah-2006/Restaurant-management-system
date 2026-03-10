@@ -24,6 +24,12 @@ export function CustomerPortal() {
     }
   }, [customer]);
 
+  useEffect(() => {
+    if (!currentTable && currentView !== 'booking') {
+      setCurrentView('booking');
+    }
+  }, [currentTable, currentView]);
+
   const loadCurrentTable = async () => {
     if (!customer?.current_table_id) return;
 
@@ -100,11 +106,7 @@ export function CustomerPortal() {
     return <CustomerLogin />;
   }
 
-  useEffect(() => {
-    if (!currentTable && currentView !== 'booking') {
-      setCurrentView('booking');
-    }
-  }, [currentTable, currentView]);
+
 
   return (
     <div className="min-h-screen bg-gray-50">
